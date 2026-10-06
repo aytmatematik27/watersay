@@ -1,0 +1,247 @@
+```html
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sude ❤️</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+
+            background:
+                radial-gradient(circle at 20% 30%, #ffffff 1px, transparent 2px),
+                radial-gradient(circle at 70% 20%, #ffffff 1px, transparent 2px),
+                radial-gradient(circle at 40% 80%, #ffffff 1px, transparent 2px),
+                radial-gradient(circle at 90% 70%, #ffffff 1px, transparent 2px),
+                linear-gradient(135deg, #020024, #090979, #000000);
+
+            background-size:
+                180px 180px,
+                220px 220px,
+                150px 150px,
+                250px 250px,
+                cover;
+
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            padding: 30px;
+            max-width: 1000px;
+            animation: appear 2s ease;
+        }
+
+        .heart {
+            font-size: 90px;
+            animation: heartbeat 1.4s infinite;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            color: white;
+            font-size: clamp(40px, 7vw, 90px);
+            line-height: 1.15;
+
+            text-shadow:
+                0 0 10px #fff,
+                0 0 25px #4da6ff,
+                0 0 50px #0066ff;
+        }
+
+        .question {
+            margin-top: 35px;
+            color: #b9dcff;
+            font-size: clamp(25px, 4vw, 45px);
+            font-weight: bold;
+        }
+
+        /* BUTONLAR */
+        .buttons {
+            margin-top: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            position: relative;
+            min-height: 100px;
+        }
+
+        button {
+            border: none;
+            border-radius: 15px;
+            padding: 18px 35px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #yesBtn {
+            background: #ff4f81;
+            color: white;
+            box-shadow: 0 0 20px rgba(255, 79, 129, 0.7);
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.08);
+        }
+
+        #noBtn {
+            background: #555;
+            color: white;
+            position: relative;
+        }
+
+        /* SONUÇ EKRANI */
+        #result {
+            display: none;
+        }
+
+        #result .heart {
+            font-size: 120px;
+        }
+
+        #result h2 {
+            color: white;
+            font-size: clamp(40px, 7vw, 85px);
+            text-shadow:
+                0 0 10px #fff,
+                0 0 30px #ff4f81,
+                0 0 60px #ff0066;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: scale(0.7);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ANA EKRAN -->
+    <div class="container" id="main">
+
+        <div class="heart">❤️</div>
+
+        <h1>
+            Özür dilerim Sude
+            <br>
+            Yarın okulda olacağım
+        </h1>
+
+        <div class="question">
+            Beni özledin mi? 🥺
+        </div>
+
+        <div class="buttons">
+            <button id="yesBtn">
+                Özledim ❤️
+            </button>
+
+            <button id="noBtn">
+                Özlemedim 😏
+            </button>
+        </div>
+
+    </div>
+
+
+    <!-- ÖZLEDİM EKRANI -->
+    <div class="container" id="result">
+
+        <div class="heart">❤️</div>
+
+        <h2>
+            Ben de seni özledim &lt;3
+        </h2>
+
+    </div>
+
+
+    <script>
+
+        const yesBtn = document.getElementById("yesBtn");
+        const noBtn = document.getElementById("noBtn");
+
+        const main = document.getElementById("main");
+        const result = document.getElementById("result");
+
+        let yesSize = 24;
+
+        // ÖZLEDİM BUTONUNA BASINCA
+        yesBtn.addEventListener("click", function () {
+
+            main.style.display = "none";
+            result.style.display = "block";
+
+        });
+
+
+        // ÖZLEMEDİM BUTONUNA BASINCA KAÇSIN
+        noBtn.addEventListener("click", function () {
+
+            // Özledim butonunu büyüt
+            yesSize += 8;
+
+            yesBtn.style.fontSize = yesSize + "px";
+            yesBtn.style.padding =
+                (18 + yesSize / 3) + "px " +
+                (35 + yesSize / 2) + "px";
+
+            // Özlemedim butonunu ekranın rastgele yerine taşı
+            noBtn.style.position = "fixed";
+
+            const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+            const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+
+            const randomX = Math.max(
+                10,
+                Math.random() * maxX
+            );
+
+            const randomY = Math.max(
+                10,
+                Math.random() * maxY
+            );
+
+            noBtn.style.left = randomX + "px";
+            noBtn.style.top = randomY + "px";
+
+        });
+
+    </script>
+
+</body>
+</html>
+```
